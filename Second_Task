@@ -1,0 +1,47 @@
+#include <algorithm>
+#include <iostream>
+#include <string>
+#include <vector>
+using namespace std;
+ 
+
+int number_Comparison(string X, string Y)
+{
+    
+    string XY = X.append(Y);
+ 
+   
+    string YX = Y.append(X);
+ 
+    
+    return XY.compare(YX) > 0 ? 1 : 0;
+}
+ 
+
+void number_Largest(vector<string> arr)
+{
+     
+    
+    sort(arr.begin(), arr.end(), number_Comparison);
+ 
+    for (int i = 0; i < arr.size(); i++)
+        cout << arr[i];
+}
+ 
+int main()
+{
+    int N;
+    cout<<"Enter the number of values you want in your array"<<endl;
+    cin>>N;
+    cout<<"Enter values to get the largest number"<<endl;
+    vector<string> arr;
+    arr.push_back("54");
+    arr.push_back("546");
+    arr.push_back("548");
+    arr.push_back("60");
+    cout<<"The largest number is"<<"   ";
+    number_Largest(arr);
+    
+ 
+    return 0;
+}
