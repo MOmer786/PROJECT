@@ -1,0 +1,75 @@
+
+#include <iostream>
+using namespace std;
+#define MAX 26  
+string convertSTR(string val, int lengthVAL)
+{
+    int i, j;
+    
+    int checkVAL[MAX];
+    for (i = 0; i < MAX; i++)
+        checkVAL[i] = -1;
+  
+    
+    for (i = 0; i < lengthVAL; i++) {
+  
+      
+        if (checkVAL[val[i] - 'a'] == -1)
+            checkVAL[val[i] - 'a'] = i;
+    }
+  
+    
+    for (i = 0; i < lengthVAL; i++) {
+  
+        bool flag = false;
+  
+        
+        for (j = 0; j < val[i] - 'a'; j++) {
+  
+            
+            if (checkVAL[j] > checkVAL[val[i] - 'a']) {
+                flag = true;
+                break;
+            }
+        }
+  
+        
+        if (flag)
+            break;
+    }
+  
+    
+    if (i < lengthVAL) {
+  
+       
+        char ch1 = val[i];
+        char ch2 = char(j + 'a');
+  
+        
+        for (i = 0; i < lengthVAL; i++) {
+  
+            
+            if (val[i] == ch1)
+                val[i] = ch2;
+  
+            else if (val[i] == ch2)
+                val[i] = ch1;
+        }
+    }
+  
+    return val;
+}
+  
+int main()
+{
+    cout<<"Enter the desired string::"<<endl;
+    
+    string val;
+    cin>>val;
+    int lengthVAL = val.length();
+    cout<<"String after conversion::"<<endl;
+  
+    cout << convertSTR(val,lengthVAL );
+  
+    return 0;
+}
