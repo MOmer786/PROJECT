@@ -1,0 +1,57 @@
+
+#include <bits/stdc++.h>
+using namespace std;
+
+struct meeting {
+    int start;
+    int end;
+    int pos;
+};
+ 
+
+bool comparator(struct meeting m1, meeting m2)
+{
+    return (m1.end < m2.end);
+}
+void meeting_call(int s[], int f[], int n)
+{
+    struct meeting call_meet[n];
+    for (int i = 0; i < n; i++)
+    {
+        call_meet[i].start = s[i];
+        call_meet[i].end = f[i];
+        call_meet[i].pos = i + 1;
+    }
+    sort(call_meet, call_meet + n, comparator);
+    vector<int> m;
+
+    m.push_back(call_meet[0].pos);
+
+    int time_limit = call_meet[0].end;
+    for (int i = 1; i < n; i++) {
+        if (call_meet[i].start >= time_limit)
+        {
+
+            m.push_back(call_meet[i].pos);
+             
+          
+            time_limit = call_meet[i].end;
+        }
+    }
+    for (int i = 0; i < m.size(); i++) {
+        cout << m[i] << " ";
+        
+    }
+}
+ 
+
+int main()
+{
+
+    int array_start[] = { 1, 3, 0, 5, 8, 5 };
+    int array_end[] = { 2, 4, 6, 7, 9, 9 };
+    int val = sizeof(array_start) / sizeof(array_start[0]);
+    meeting_call(array_start, array_end, val);
+ 
+    return 0;
+}
